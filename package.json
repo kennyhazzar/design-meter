@@ -1,0 +1,26 @@
+{
+  "name": "design-meter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kennyhazzar/design-meter.git"
+  },
+  "author": "kolchanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kennyhazzar/design-meter/issues"
+  },
+  "homepage": "https://github.com/kennyhazzar/design-meter#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0",
+    "config": "^3.3.6",
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16",
+    "telegraf": "^4.3.0"
+  }
+}
