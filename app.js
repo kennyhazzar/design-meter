@@ -4,10 +4,8 @@ const mongoose = require('mongoose')
 const Layout = require('./model/Layout.js')
 const bot = new Telegraf(config.get('botToken'))
 const photo = require('./middlewares/photo.user.middleware')
-const { cold } = require('./middlewares/actions/cold.actions')
-const { warm } = require('./middlewares/actions/warm.action')
-const { hot } = require('./middlewares/actions/hot.actions')
-const { unclear } = require('./middlewares/actions/unclear.actions')
+const {cold, warm, hot, unclear} = require('./middlewares/actions.middleware')
+
 bot.start(ctx => {
     ctx.reply('Привет!' +
         'Дизайнометр поможет замерить качество дизайна. Пришли макет в JPG (пока только сжатое фото) и в ответ получишь оценку ' + '"Холодно/Тепло/Горячо"')
