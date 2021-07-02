@@ -6,7 +6,7 @@ module.exports = {
             try {
                 const messageId = ctx.callbackQuery.message.text.slice(ctx.callbackQuery.message.text.lastIndexOf(':') + 2)
                 const chatUser = await Layout.findOne({ messageId })
-                
+                ctx.answerCbQuery('Холодно')
                 ctx.editMessageText(
                     `Макет от @${chatUser.user.username} оценен как Холодно\nОценил: @${ctx.callbackQuery.from.username}
                 `)
@@ -27,7 +27,7 @@ module.exports = {
             try {
                 const messageId = ctx.callbackQuery.message.text.slice(ctx.callbackQuery.message.text.lastIndexOf(':') + 2)
                 const chatUser = await Layout.findOne({ messageId })
-                
+                ctx.answerCbQuery('🔥Горячо')
                 ctx.editMessageText(
                     `Макет от @${chatUser.user.username} оценен как 🔥Горячо\nОценил: @${ctx.callbackQuery.from.username}
                 `)
@@ -50,7 +50,7 @@ module.exports = {
             try {
                 const messageId = ctx.callbackQuery.message.text.slice(ctx.callbackQuery.message.text.lastIndexOf(':') + 2)
                 const chatUser = await Layout.findOne({ messageId })
-
+                ctx.answerCbQuery('Непонятно')
                 ctx.editMessageText(
                     `Что-то непонятное от @${chatUser.user.username}, отправляю ему соответствующее сообщение
                 \nОценил: @${ctx.callbackQuery.from.username}
@@ -74,7 +74,7 @@ module.exports = {
             try {
                 const messageId = ctx.callbackQuery.message.text.slice(ctx.callbackQuery.message.text.lastIndexOf(':') + 2)
                 const chatUser = await Layout.findOne({ messageId })
-                
+                ctx.answerCbQuery('Тепло')
                 
                 ctx.editMessageText(
                     `Макет от @${chatUser.user.username} оценен как Тепло\nОценил: @${ctx.callbackQuery.from.username}
