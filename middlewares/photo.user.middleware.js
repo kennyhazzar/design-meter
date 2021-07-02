@@ -8,7 +8,7 @@ const defaultInlineKeyboard =
         currentDefault.inline_keyboard :
         templateDefault.inline_keyboard
 
-console.log(`проверка тернарки:\n${JSON.stringify(defaultInlineKeyboard)}`)
+// console.log(`проверка тернарки:\n${JSON.stringify(defaultInlineKeyboard)}`)
 module.exports = {
     photoHandler: async ctx => {
         if (ctx.chat.type === 'private') {
