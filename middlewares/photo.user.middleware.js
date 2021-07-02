@@ -1,10 +1,16 @@
 ﻿const config = require('config')
-const { Telegraf } = require("telegraf")
-const bot = new Telegraf(config.get('botToken'))
 const Layout = require('../model/Layout')
 const chatId = config.get('chatId')
+const templateDefault = require('../template/default_template.json')
+const currentDefault = require('../template/current_template.json')
+const defaultInlineKeyboard =
+    currentDefault.inline_keyboard != undefined ?
+        currentDefault.inline_keyboard :
+        templateDefault.inline_keyboard
+
+console.log(`проверка тернарки:\n${JSON.stringify(defaultInlineKeyboard)}`)
 module.exports = {
-    on: async ctx => {
+    photoHandler: async ctx => {
         if (ctx.chat.type === 'private') {
             try {
                 const username = ctx.chat.username
@@ -22,21 +28,15 @@ module.exports = {
 
                 )
                 layout.save()
-
-                await bot.telegram.forwardMessage(
+                await ctx.telegram.forwardMessage(
                     chatId,
                     ctx.chat.id,
                     ctx.message.message_id,
                     { disable_notification: true })
 
-                await bot.telegram.sendMessage(chatId, `Макет от @${ctx.chat.username}!\nНомер: ${ctx.message.message_id}`, {
+                await ctx.telegram.sendMessage(chatId, `Макет от @${ctx.chat.username}!\nНомер: ${ctx.message.message_id}`, {
                     reply_markup: {
-                        inline_keyboard: [
-                            [{ text: "🔥Горячо", callback_data: "Hot" },
-                            { text: "Тепло", callback_data: "Warm" },
-                            { text: "Непонятно", callback_data: "Unclear" }],
-                            [{ text: "Холодно", callback_data: "Cold" }],
-                        ],
+                        inline_keyboard: defaultInlineKeyboard,
                         force_reply: true,
                     },
                 })
