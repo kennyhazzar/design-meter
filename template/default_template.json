@@ -1,0 +1,11 @@
+﻿{
+    "inline_keyboard": [
+        [{ "text": "🔥Горячо", "callback_data": "Hot" },
+        { "text": "Тепло", "callback_data": "Warm" },
+        { "text": "Непонятно", "callback_data": "Unclear" }],
+        [{ "text": "Холодно", "callback_data": "Cold" }]
+    ],
+    "feedback": [
+        { "callback_data": "Hot", "text": ""}
+    ]
+}
