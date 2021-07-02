@@ -40,7 +40,7 @@ bot.on('text', ctx => {
     if (ctx.chat.type === 'private') {
         ctx.reply('Я бы с радостью пообщался, да не для этого создан. Пришлите макет и я его оценю.')
     } else {
-        console.log(ctx)
+        console.log(ctx.update.message.chat.id)
     }
 })
 
@@ -48,10 +48,8 @@ bot.on('text', ctx => {
 
 bot.on('photo', ctx => photoHandler(ctx))
 
-// const actionMark = ['Cold', 'Warm', 'Hot', 'Unclear']
-
 settingScene.action('ban_setting', ctx => banEnter(ctx))
-// banScene.action('add_ban', ctx => )
+
 bot.action('Cold', async ctx => cold(ctx))
 bot.action('Warm', async ctx => warm(ctx))
 bot.action('Hot', async ctx => hot(ctx))
