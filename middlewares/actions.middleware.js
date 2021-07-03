@@ -11,8 +11,10 @@ module.exports = {
                     `Макет от @${chatUser.user.username} оценен как Холодно\nОценил: @${ctx.callbackQuery.from.username}
                 `)
 
-                ctx.telegram.sendMessage(chatUser.chatId, 'Холодно. Ищите ответ в вёрстке', {
-                    reply_to_message_id: chatUser.messageId
+                ctx.telegram.sendMessage(chatUser.chatId, 'Холодно\\. Поработайте с вёрсткой, чтобы потеплело\\.\nПопробуйте поучаствовать [в наших спринтах](https://vk.com/lean.school)', {
+                    parse_mode: 'MarkdownV2',
+                    reply_to_message_id: chatUser.messageId,
+                    disable_web_page_preview: true
                 })
             } catch (error) {
                 console.log(error)
@@ -32,7 +34,7 @@ module.exports = {
                     `Макет от @${chatUser.user.username} оценен как 🔥Горячо\nОценил: @${ctx.callbackQuery.from.username}
                 `)
 
-                ctx.telegram.sendMessage(chatUser.chatId, '🔥Горячо, если вы не умеете так верстать, то может [поработаем вместе?](https://leandesign.typeform.com/to/RNs61IUK)', {
+                ctx.telegram.sendMessage(chatUser.chatId, '🔥Горячо\\.\nОтличная работа, [может познакомимся](https://leandesign.typeform.com/to/RNs61IUK)?', {
                     parse_mode: 'MarkdownV2',
                     reply_to_message_id: chatUser.messageId,
                     disable_web_page_preview: true
@@ -57,7 +59,7 @@ module.exports = {
                 `)
 
                 ctx.telegram.sendMessage(chatUser.chatId,
-                    'Мы ничего не можем сказать о данной работе. Мы оцениваем только макеты, связанные с вёрсткой.', {
+                    'Вёрстки не обнаружено. Попробуйте другой макет. Мы отсматриваем только работы связанные с вёрсткой.', {
                     reply_to_message_id: chatUser.messageId,
 
                 })
@@ -75,14 +77,16 @@ module.exports = {
                 const messageId = ctx.callbackQuery.message.text.slice(ctx.callbackQuery.message.text.lastIndexOf(':') + 2)
                 const chatUser = await Layout.findOne({ messageId })
                 ctx.answerCbQuery('Тепло')
-                
+
                 ctx.editMessageText(
                     `Макет от @${chatUser.user.username} оценен как Тепло\nОценил: @${ctx.callbackQuery.from.username}
                 `)
 
                 ctx.telegram.sendMessage(chatUser.chatId,
-                    'Тепло!', {
+                    'Тепло\\. Хорошо, но пока не вау\\. Дьявол в мелочах\\. Попробуйте [поучаствовать в наших спринтах](https://vk.com/lean.school)\\.', {
+                    parse_mode: 'MarkdownV2',
                     reply_to_message_id: chatUser.messageId,
+                    disable_web_page_preview: true
 
                 })
             } catch (error) {
