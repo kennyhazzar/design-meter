@@ -11,11 +11,11 @@ banScene.leave(async ctx => {
     ctx.scene.enter('settingScene')
 })
 
-settingScene.leave(async ctx => {
-    await ctx.answerCbQuery('Изменения внесены')
-    await ctx.deleteMessage(ctx.update.callback_query.message.message_id)
-    await ctx.deleteMessage(ctx.session?.quit_id)
-})
+// settingScene.leave(async ctx => {
+//     await ctx.answerCbQuery('Изменения внесены')
+//     await ctx.deleteMessage(ctx.update.callback_query.message.message_id)
+//     await ctx.deleteMessage(ctx.session?.quit_id)
+// })
 
 settingScene.enter(ctx => settingEnter(ctx))
 banScene.enter(ctx => banEnter(ctx))
@@ -30,8 +30,13 @@ bot.use(session())
 bot.use(stage.middleware())
 
 bot.start(ctx => {
-    ctx.reply('Привет!' +
-        ' Дизайнометр поможет замерить качество дизайна. Пришли макет в JPG (пока только сжатое фото) и в ответ получишь оценку ' + '"Холодно/Тепло/Горячо"')
+    ctx.reply(`Привет! «Дизайнометр» измеряет качество дизайна по шкале «Горячо–Тепло–Холодно».\n
+
+    Под капотом сложный неискусственный интеллект двух дизайнеров Лёши Ревы и Жоры Погребняка. При виде макета он производит сложные вычисления и за секунду выдаёт реакцию в виде одного слова. Как он работает мы сами не знаем. Какой из дизайнеров отреагирует, тоже не угадать. Но пользователи говорят, что результат оказывается довольно точным.\n 
+    
+    Оценки субъективны, и мы не несём ответственность за принятые вами решения после и судьбу ваших проектов.\n
+    
+    Пришлите макет в JPG со сжатием и в ответ получите оценку.`)
 })
 
 // bot.settings(ctx => ctx.scene.enter('settingScene'))
