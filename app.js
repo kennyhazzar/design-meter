@@ -57,7 +57,7 @@ bot.on('document', ctx => {
         ctx.update.message.document.file_name.split('.').pop() === 'JPEG' ||
         ctx.update.message.document.file_name.split('.').pop() === 'jpeg') {
         photoHandler(ctx)
-    } else ctx.reply('Файл неподходящего формата, либо в названии файла лишние точки')
+    } else ctx.reply('Файл неподходящего формата, в названии файла не должно быть точек, кроме расширения - example.jpg')
 })
 
 bot.on('photo', ctx => photoHandler(ctx))
