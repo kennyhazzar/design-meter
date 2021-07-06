@@ -48,8 +48,17 @@ bot.on('text', ctx => {
         console.log(ctx.update.message.chat.id)
     }
 })
-
-
+// ctx.update.message.document.file_name
+bot.on('document', ctx => {
+    if (ctx.update.message.document.file_name.split('.').pop() === 'png' ||
+        ctx.update.message.document.file_name.split('.').pop() === 'PNG' ||
+        ctx.update.message.document.file_name.split('.').pop() === 'jpg' ||
+        ctx.update.message.document.file_name.split('.').pop() === 'JPG' ||
+        ctx.update.message.document.file_name.split('.').pop() === 'JPEG' ||
+        ctx.update.message.document.file_name.split('.').pop() === 'jpeg') {
+        photoHandler(ctx)
+    } else ctx.reply('Файл неподходящего формата, либо в названии файла лишние точки')
+})
 
 bot.on('photo', ctx => photoHandler(ctx))
 
