@@ -1,5 +1,4 @@
 ﻿const config = require('config')
-const Layout = require('../model/Layout')
 const Datascore = require('nedb-promise')
 const chatId = config.get('chatId')
 const templateDefault = require('../template/default_template.json')

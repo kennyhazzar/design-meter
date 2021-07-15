@@ -2,7 +2,7 @@
 const config = require('config')
 const { photoHandler } = require('./middlewares/photo.user.middleware')
 const { feedback } = require('./middlewares/actions.middleware')
-const { setting, settingScene, banScene, settingEnter, banEnter } = require('./middlewares/setting.middleware')
+const { settingScene, banScene, settingEnter, banEnter } = require('./middlewares/setting.middleware')
 
 banScene.leave(async ctx => {
     ctx.deleteMessage(ctx.update.callback_query.message.message_id)
