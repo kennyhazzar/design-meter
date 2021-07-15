@@ -1,5 +1,6 @@
 ﻿const config = require('config')
 const Layout = require('../model/Layout')
+const Datascore = require('nedb-promise')
 const chatId = config.get('chatId')
 const templateDefault = require('../template/default_template.json')
 const currentDefault = require('../template/current_template.json')
@@ -14,20 +15,17 @@ module.exports = {
         if (ctx.chat.type === 'private') {
             try {
                 const username = ctx.chat.username
-                const layout = new Layout(
-                    {
-                        user: {
-                            firstName: ctx.chat.first_name,
-                            lastName: ctx.chat.last_name,
-                            username: ctx.chat.username,
-                        },
-                        messageId: ctx.message.message_id,
-                        chatId: ctx.chat.id,
-                        username
-                    }
-
-                )
-                layout.save()
+                const db = new Datascore({ filename: 'data/message', autoload: true })
+                await db.insert({
+                    user: {
+                        firstName: ctx.chat.first_name,
+                        lastName: ctx.chat.last_name,
+                        username: ctx.chat.username,
+                    },
+                    messageId: ctx.message.message_id,
+                    chatId: ctx.chat.id,
+                    username
+                })
                 await ctx.telegram.forwardMessage(
                     chatId,
                     ctx.chat.id,
