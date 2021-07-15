@@ -23,6 +23,7 @@
     "config": "^3.3.6",
     "fs": "0.0.1-security",
     "mongoose": "^5.12.14",
+    "nedb-promise": "^2.0.1",
     "nodemon": "^2.0.7",
     "shortid": "^2.2.16",
     "telegraf": "^4.3.0"
