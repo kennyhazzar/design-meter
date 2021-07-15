@@ -1,10 +1,8 @@
 ﻿const { Telegraf, session, Scenes: { BaseScene, Stage }, Markup } = require('telegraf')
 const config = require('config')
-const mongoose = require('mongoose')
 const { photoHandler } = require('./middlewares/photo.user.middleware')
-const { cold, warm, hot, unclear } = require('./middlewares/actions.middleware')
+const { feedback } = require('./middlewares/actions.middleware')
 const { setting, settingScene, banScene, settingEnter, banEnter } = require('./middlewares/setting.middleware')
-
 
 banScene.leave(async ctx => {
     ctx.deleteMessage(ctx.update.callback_query.message.message_id)
@@ -64,10 +62,10 @@ bot.on('photo', ctx => photoHandler(ctx))
 
 settingScene.action('ban_setting', ctx => banEnter(ctx))
 
-bot.action('Cold', async ctx => cold(ctx))
-bot.action('Warm', async ctx => warm(ctx))
-bot.action('Hot', async ctx => hot(ctx))
-bot.action('Unclear', async ctx => unclear(ctx))
+bot.action('Cold', async ctx => feedback(ctx, 'cold'))
+bot.action('Warm', async ctx => feedback(ctx, 'warm'))
+bot.action('Hot', async ctx => feedback(ctx, 'hot'))
+bot.action('Unclear', async ctx => feedback(ctx, 'unclear'))
 
 bot.on('message', ctx => {
     if (ctx.chat.type === 'private') {
@@ -80,11 +78,6 @@ bot.on('message', ctx => {
 async function start() {
     try {
         console.log(`started`)
-        mongoose.connect(config.get('mongoUri'), {
-            useUnifiedTopology: true,
-            useNewUrlParser: true,
-            useCreateIndex: true
-        })
         bot.launch()
     } catch (error) {
         console.log(`started is wrong:\n${error}`)
